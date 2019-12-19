@@ -1,5 +1,20 @@
 class UsersController < ApplicationController
   before_action :require_login, except: [:create]
+  
+  def index 
+    users = User.where("username LIKE ?", params[:query] << '%')
+    render json: users
+  end
+
+  def show
+    user = User.find(params.require(:id))
+    if user
+      render json: user, status: :ok
+    else
+      render json: {error: 'cant find user'}, status: :not_found
+    end
+  end
+
   def create
     user = User.create(user_params)
     if user.valid?
