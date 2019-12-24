@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_144930) do
+ActiveRecord::Schema.define(version: 2019_12_24_003718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2019_12_18_144930) do
     t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
+  create_table "notification_data", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "endpoint"
+    t.string "p256dh_key"
+    t.string "auth_key"
+    t.index ["user_id"], name: "index_notification_data_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -53,4 +61,5 @@ ActiveRecord::Schema.define(version: 2019_12_18_144930) do
   add_foreign_key "events", "users"
   add_foreign_key "invitations", "events"
   add_foreign_key "invitations", "users"
+  add_foreign_key "notification_data", "users"
 end

@@ -4,4 +4,5 @@ class User < ApplicationRecord
   validates :password, length: { in: 6..20 }
   has_many :events
   has_many :contacts, class_name: 'Contact', foreign_key: 'owner_id'
+  has_many :notification_data
 end

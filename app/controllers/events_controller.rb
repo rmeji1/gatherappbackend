@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   before_action :require_login
   def index 
     user = User.find(params.require(:user_id))
+    PushService.sendPush(user)
+
     render json: user.events, status: :ok
   end
 
