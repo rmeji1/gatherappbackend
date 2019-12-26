@@ -7,7 +7,6 @@ class EventsController < ApplicationController
 
   def create 
     begin
-      
       event = Event.create(event_params)
       PushService.sendPush(User.find(params[:user_id]), JSON.generate({"type": "ADD_EVENT", "event": EventSerializer.new(event).as_json}))
       render json: event, status: :created

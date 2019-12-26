@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
     notificationData.p256dh_key = params["keys"]["p256dh"]
     notificationData.auth_key = params["keys"]["auth"]
     notificationData.user_id = params["user_id"]
-    NotificationDatum.find_by!(endpoint: notificationData.endpoint, auth_key: notificationData.auth_key)
+    NotificationDatum.find_by!(endpoint: notificationData.endpoint, auth_key: notificationData.auth_key, user_id: notificationData.user_id)
     rescue ActiveRecord::RecordNotFound => e 
       notificationData.save
       if notificationData.valid?

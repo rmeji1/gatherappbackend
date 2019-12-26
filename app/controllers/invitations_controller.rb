@@ -7,6 +7,7 @@ class InvitationsController < ApplicationController
   def create
     invitation = Invitation.create(invitation_params)
     if invitation.valid?
+      PushService.sendPush(User.find(invitation.user_id), JSON.generate({"type": "ADD_INVITATION", "invitation": InvitationSerializer.new(invitation).as_json}))
       render json: invitation, status: :ok
     else
       render json: {error: invitation.error.messages}, status: :not_found
