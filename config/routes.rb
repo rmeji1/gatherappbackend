@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:index, :create, :show] do
     resources :events, only: [:create, :index]
+    resources :invitations, only: [:index]
     post 'notifications/create'
   end
+  
   resources :contacts, only: [:create]
   resources :login, only: [:create]
 

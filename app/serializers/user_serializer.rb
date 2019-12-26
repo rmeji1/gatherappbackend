@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :contacts
+  attributes :id, :username, :contacts, :invitations
 
   def contacts 
     self.object.contacts.map do |contact|

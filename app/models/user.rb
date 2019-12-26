@@ -5,4 +5,6 @@ class User < ApplicationRecord
   has_many :events
   has_many :contacts, class_name: 'Contact', foreign_key: 'owner_id'
   has_many :notification_data
+  has_many :invitations
+  has_many :invited_events, through: :invitations, source: 'event'
 end

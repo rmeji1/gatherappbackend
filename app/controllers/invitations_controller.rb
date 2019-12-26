@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
   def index
-    event_id = params[:event_id]
-    
+    render json: User.find(params[:user_id]).invitations if params[:user_id].present?
+    render json: Event.find(params[:event_id]).invitations if params[:event_id].present?
   end
 
   def create
