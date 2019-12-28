@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'yelp/index'
+  resources :invitations, only: [:update]
   resources :events, only: [:show] do
     resources :invitations, only: [:create, :index]
   end

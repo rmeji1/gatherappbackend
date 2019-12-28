@@ -14,8 +14,12 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def update
+    Invitation.find(params[:id]).update(invitation_params)
+  end
+
   private 
   def invitation_params
-    params.require(:invitation).permit(:user_id).merge(params.permit(:event_id))
+    params.require(:invitation).permit(:user_id, :confirmed).merge(params.permit(:event_id))
   end
 end
