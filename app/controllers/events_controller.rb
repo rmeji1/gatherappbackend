@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :require_login
   def index 
     user = User.find(params.require(:user_id))
-    render json: user.events, status: :ok
+    render json: user.confirmed_events, status: :ok
   end
 
   def create 

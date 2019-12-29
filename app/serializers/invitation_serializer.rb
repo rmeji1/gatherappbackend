@@ -1,5 +1,5 @@
 class InvitationSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :event_creator, :event_title, :event_description
+  attributes :id, :user_id, :confirmed, :event_creator, :event_title, :event_description
   has_one :event
 
   def event_creator

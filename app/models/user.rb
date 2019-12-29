@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :notification_data
   has_many :invitations
   has_many :invited_events, through: :invitations, source: 'event'
+
+  def confirmed_events 
+    self.events + invitations.select{ |invite| invite.confirmed }.map(&:event)
+  end
 end
