@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :invitations, only: [:update]
   resources :events, only: [:show] do
     resources :invitations, only: [:create, :index]
+    resources :events_lists, only: :create
   end
   resources :users, only: [:index, :create, :show] do
     resources :events, only: [:create, :index]

@@ -1,6 +1,7 @@
 require 'rest-client'
 
 class YelpController < ApplicationController
+  before_action :require_login
   def index
     auth = {Authorization: "Bearer #{ENV['API_KEY']}"}
     response = RestClient::Request.execute(method: :get, url:"https://api.yelp.com/v3/businesses/search", 

@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_action :require_login
   def create
     contact = Contact.create(create_contact_params)
     if contact.valid?
