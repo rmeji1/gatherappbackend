@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'assistant/create'
+  get 'assistant/create/session', to: 'assistant#create_session'
+
   get 'yelp/index'
   resources :invitations, only: [:update]
   resources :events, only: [:show] do
