@@ -5,9 +5,12 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    begin 
-      invitation = Invitation.create!(invitation_params)
-      PushService.sendPush(User.find(invitation.user_id), JSON.generate({"type": "ADD_INVITATION", "invitation": InvitationSerializer.new(invitation).as_json}))
+    begin
+      invitation = Invitation.find_by invitation_params
+      if !invitation 
+        invitation = Invitation.create!(invitation_params)
+        PushService.sendPush(User.find(invitation.user_id), JSON.generate({"type": "ADD_INVITATION", "invitation": InvitationSerializer.new(invitation).as_json}))
+      end
       render json: invitation , status: :ok
     rescue ActiveRecord::RecordInvalid => e
       render json: {error: e.messages}, status: :not_found

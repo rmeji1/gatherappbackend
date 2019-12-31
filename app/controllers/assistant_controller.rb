@@ -13,18 +13,17 @@ class AssistantController < ApplicationController
     )
     service.service_url = ENV["service_url"]
     begin
-    response = service.message(
-      assistant_id: ENV["assistant_id"],
-      session_id: params[:session_id],
-      input: {
-        "text" => params[:message],
-        "options" => {
-          return_context: true
-        }        
-      }
-      # context: true
-    )
-    render json: {message: response.result}
+      response = service.message(
+        assistant_id: ENV["assistant_id"],
+        session_id: params[:session_id],
+        input: {
+          "text" => params[:message],
+          "options" => {
+            return_context: true
+          }        
+        }
+      )
+      render json: {message: response.result}
     rescue IBMCloudSdkCore::ApiException => e
       if (e.error == 'Invalid Session') 
         render json: {need_new_session: true, message: "Create new session"}, status: :not_acceptable
@@ -51,6 +50,3 @@ class AssistantController < ApplicationController
     render json: {session_id: session_id}
   end
 end
-
-# a1568d1a-c510-4b07-a21d-11eb2906497d
-# 1cb9bb22-5474-4a49-88dc-7c6ab6796506

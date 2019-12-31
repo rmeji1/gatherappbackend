@@ -1,7 +1,7 @@
 class EventSerializer < ActiveModel::Serializer
   has_many :invitations, serializer: InvitationSerializer
   has_many :events_lists
-  attributes :id, :title, :description, :creator_id, :creator_name, :invitations
+  attributes :id, :title, :description, :creator_id, :creator_name, :invitations, :events_lists
 
   def creator_name 
     self.object.creator.username || User.find(self.object.user_id).username
