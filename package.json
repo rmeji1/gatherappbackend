@@ -1,0 +1,11 @@
+{
+  "name": "gather-app",
+  "engines": {
+    "node": "6.12.1"
+  },
+  "scripts": {
+    "build": "cd gatherappfrontend && npm install && npm run build && cd ..",
+    "deploy": "cp -a gatherappfrontend/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  }
+}
