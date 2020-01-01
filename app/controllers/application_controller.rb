@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::API
+  def fallback_index_html
+    render :file => 'public/index.html'
+  end
+  
   private 
   def token(user_id)
     payload = { user_id: user_id } # I want to add watson token here as well
