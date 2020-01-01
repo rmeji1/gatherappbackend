@@ -1,4 +1,6 @@
 class InvitationsController < ApplicationController
+  before_action :require_login
+
   def index
     render json: User.find(params[:user_id]).invitations if params[:user_id].present?
     render json: Event.find(params[:event_id]).invitations if params[:event_id].present?
