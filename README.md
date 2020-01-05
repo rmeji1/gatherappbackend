@@ -1,6 +1,7 @@
 # Gather App RoR Backend 
 This applications allows users to group a list of Yelp locations, set a timeframe, and invite friends. This app served as a graduation requirement for Flatiron School's Software Immersive Program.
 
+![Gif Demo](https://github.com/rmeji1/gatherappfrontend/blob/develop/out-gather.gif)
 Checkout repos for [Gather App Frontend React](https://github.com/rmeji1/gatherappfrontend).
 
 ## Languages and Frameworks
@@ -21,6 +22,5 @@ First clone down the repo and run the following commands to run site locally.
 ```bash
 1. rails s
 ```
-
 ## Demo 
 Check the site out online at [Gather App](https://gatherapp-flatiron.herokuapp.com)
